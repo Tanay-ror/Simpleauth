@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <div class="row justify-content-center">
+    <div class="col-lg-8">
+      <% if @posts.any? %>
+        <div class="container mt-5">
+          <h1 class="mb-4">Posts Created by <%= current_user.full_name %></h1>
+          <div class="row">
+            <% @posts.each do |post| %>
+              <div class="col-lg-4 col-md-6 mb-4">
+                <div class="card h-100 border-primary shadow">
+                  <div class="card-body">
+                    <h5 class="card-title text-primary"><%= post.title %></h5>
+                    <p class="card-text"><%= post.content %></p>
+                  </div>
+                  <div class="card-footer bg-transparent border-top-0">
+                    <small class="text-muted">Posted <%= time_ago_in_words(post.created_at) %> ago</small>
+                  </div>
+                </div>
+              </div>
+            <% end %>
+          </div>
+
+          <%= paginate @posts, theme: 'bootstrap4', class: 'pagination justify-content-center mt-4' %>
+        </div>
+      <% else %>
+        <div class="container mt-5">
+          <div class="jumbotron">
+            <h1 class="display-4">No Posts Found</h1>
+            <p class="lead">Looks like <%= current_user.full_name %> hasn't created any posts yet.</p>
+          </div>
+        </div>
+      <% end %>
+    </div>
+  </div>
+</div>
