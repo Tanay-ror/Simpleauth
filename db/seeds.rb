@@ -1,7 +1,36 @@
-# This file should contain all the record creation needed to seed the database with its default values.
-# The data can then be loaded with the bin/rails db:seed command (or created alongside the database with db:setup).
-#
-# Examples:
-#
-#   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
-#   Character.create(name: 'Luke', movie: movies.first)
+
+first_user = User.create!(
+  email: 'first_user@example.com',
+  password: 'password123',
+  first_name: 'first',
+  last_name: 'user'
+)
+
+user_two = User.create!(
+  email: 'user_two@example.com',
+  password: 'password456',
+  first_name: 'second',
+  last_name: 'user'
+)
+
+# Create posts for first_user
+Post.create!(
+  title: 'First Post',
+  content: 'Hello  writing my first post.',
+  user: first_user
+)
+
+Post.create!(
+  title: 'Second Post',
+  content: 'Hello writing my first post.',
+  user: first_user
+)
+
+# Create posts for user_two
+Post.create!(
+  title: 'user_two Post',
+  content: 'This is the content of the post by user_two.',
+  user: user_two
+)
+
+puts 'SessionAuthApp Seed data created successfully.'
